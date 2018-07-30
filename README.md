@@ -2442,3 +2442,24 @@ In the future, we might start automatically compiling incompatible third-party m
 ## Something Missing?
 
 If you have ideas for more “How To” recipes that should be on this page, [let us know](https://github.com/facebookincubator/create-react-app/issues) or [contribute some!](https://github.com/facebookincubator/create-react-app/edit/master/packages/react-scripts/template/README.md)
+
+
+##################################################################################
+
+1# MERN Stack Series 8 - Start Frontend with react
+
+1. create-react-app mern-stack-course-react
+2. Adding route
+    - npm install react-router --save
+    https://medium.com/@pshrmn/a-simple-react-router-v4-tutorial-7f23ff27adf
+
+3. Bootstrap and jquery insert    
+    According to this article, there are many ways. but I took this way
+    - npm install bootstrap 
+    - npm install jquery popper.js
+    In index.js,
+    import 'bootstrap/dist/css/bootstrap.min.css';
+    import $ from 'jquery';
+    import Popper from 'popper.js';
+
+    https://blog.logrocket.com/how-to-use-bootstrap-with-react-a354715d1121
