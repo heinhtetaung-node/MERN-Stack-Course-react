@@ -2476,3 +2476,63 @@ lets run with npm start
     import Popper from 'popper.js';
 
     
+##################################################################################
+
+
+MERN Stack Series 9 - ReactJs# Register and Login
+
+Data insert (Register)
+    - npm install axios --save  
+    the above plugin used to send http request
+
+    - npm install qs --save
+    the above plugin need to change query string from json array
+    If the request data is {'name':'hein','email':'hein@gail.com}
+    this plugin change to query string name=hein&email=hein@gmail.com .. like this
+
+Ok lets start coding
+1. Add axioConfig.js in order to declare baseUrl or timeout or other common info
+ import axios from 'axios';
+// api configuration reference from this https://github.com/axios/axios/issues/191
+const axioApi = axios.create({  
+        baseURL: 'http://localhost:5000/api/',
+        //baseURL: 'http://mern-stack-course.herokuapp.com/api/',
+        //baseURL: 'https://jsonplaceholder.typicode.com/',
+        timeout: 10000,
+        withCredentials: true,
+        //transformRequest: [(data) => JSON.stringify(data.data)],
+        // headers: {
+        // 	'Accept': 'application/json',
+        // 	'Content-Type': 'application/json',
+        // }
+});
+export default axioApi 
+
+// api configuration reference from this https://github.com/axios/axios/issues/191
+
+
+
+2. Go Ahead Register code
+
+3. Go Ahead Login code, make sure set token to localStorage if login success
+
+4. After login finish, need to add some code to index.js
+import axioApi from './AxiosConfig';
+let token = localStorage.getItem('token');            
+if(token){
+	axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');           
+}
+this code means, If the system refresh, check token. 
+If it has token, our axios header add x-access-token in every request. That's all.
+
+5. In Home.js, check our header x-access-token is working or not in componentDidMount
+componentDidMount function is used for page start up. Same like Jquery $document.ready function
+componentDidMount(){
+  setTimeout(function(){
+    axioApi.get('auth/user').then((res) => { 
+      console.log(res.data);
+    });
+  }, 1500)
+}
+
+##################################################################################

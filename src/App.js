@@ -5,6 +5,7 @@ import './App.css';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom'
 import Home from './views/Home.js'; // this is our newly created component. we have two page, home and register
 import Register from './views/Register.js';
+import Login from './views/Login.js';
 
 class App extends Component {
   render() {
@@ -34,10 +35,12 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />  {/* this route reference to domain/  */}
             <Route path="/register" component={Register} /> {/* this route reference to domain/register  */}
+            <Route path="/login" component={Login} />
           </Switch>
         </div>
 
         <div className="container">
+          <br/><br/>
           <h6>Footer</h6>
         </div>
 

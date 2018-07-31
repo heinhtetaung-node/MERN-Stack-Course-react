@@ -8,6 +8,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
 import Popper from 'popper.js';
 
+import axioApi from './axioConfig';
+let token = localStorage.getItem('token');            
+if(token){
+	axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');           
+}
+
 ReactDOM.render(<BrowserRouter>
                     <App />
                 </BrowserRouter>, document.getElementById('root')); 
