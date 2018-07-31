@@ -2448,6 +2448,9 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 1# MERN Stack Series 8 - Start Frontend with React
 
 OK, we are now finished nodejs and now it's time to start react.
+If you dont know nothing about react, I suggest you to study https://reactjs.org/
+, https://www.codecademy.com/learn/react-101
+And then you can return to this video and enjoy. But if you are really fast learner, just study right here and you can study core features next time. For me I did like this.
 
 If you dont have create-react-app cli just install like this
 npm install create-react-app cli -g  
@@ -2473,14 +2476,3 @@ lets run with npm start
     import Popper from 'popper.js';
 
     
-
-4. Data insert (Register)
-    - npm install axios --save
-    import axios from 'axios'
-    axios.post('https://mern-stack-course.herokuapp.com/api/user', data).then((response) => {
-			console.log(response);
-		}).catch(function(error){
-			console.log(error);
-		})		
-
-5. Login
