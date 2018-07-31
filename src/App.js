@@ -4,6 +4,7 @@ import './App.css';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom'
 import Home from './views/Home.js';
 import Register from './views/Register.js';
+import Login from './views/Login.js';
 
 class App extends Component {
   render() {
@@ -29,11 +30,16 @@ class App extends Component {
 					<Switch>
 						<Route exact path='/' component={Home}/>
 						<Route path='/register' component={Register}/>
+						<Route path='/login' component={Login}/>
 					</Switch>
 				</div>
 
 				<div className="container">
-					<h6>Footer</h6>
+					<br/>
+					<hr/>
+					<p className="lead">								
+						MERN stack tutorial by @<a href="https://github.com/heinhtetaung-node/">HeinHtetAung</a> . Copyright@2018
+					</p>
 				</div>
 			</div>
 			

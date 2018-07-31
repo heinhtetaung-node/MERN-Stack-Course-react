@@ -3,17 +3,11 @@ import $ from 'jquery';
 import qs from 'qs';
 import axioApi from './../AxiosConfig';
 let $this
-class Register extends Component {
+class Login extends Component {
 	constructor(props){
 		super(props);
-		this.state = {name: '', email: '', password: ''};        
+		this.state = {email: '', password: ''};        
 		$this = this;
-	}
-
-	handleNameChange(e){
-		$this.setState({
-			name: e.target.value
-		})
 	}
 
 	handleEmailChange(e){
@@ -32,16 +26,15 @@ class Register extends Component {
 		e.preventDefault();				
 			
 		const user = {
-			name: $this.state.name,
 			email: $this.state.email,
 			password: $this.state.password
 		}
 		
-		// qs is a plugin which change json to query string  // reference from this https://github.com/axios/axios/issues/1195
-		axioApi.post(`user`,qs.stringify(user)).then((res) => { 
-			
-			// react router redirect to page programatically reference from https://tylermcginnis.com/react-router-programmatically-navigate/
-			$this.props.history.push('/login')		
+		axioApi.post(`auth/login`,qs.stringify(user)).then((res) => { 
+            
+            localStorage.setItem('token', res.data.token);            
+            axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');            
+			$this.props.history.push('/')    
 
 		}).catch((err)=>console.log(err))
 			
@@ -51,12 +44,8 @@ class Register extends Component {
     return (
       	<div>
 					<br/>
-      		<h2>Register</h2>					
+      		<h2>Login</h2>					
 					<br/>
-					<div className="form-group">
-						<label>Name</label>
-						<input onChange={this.handleNameChange} type="text" className="form-control" id="exampleInputName1" aria-describedby="emailHelp" placeholder="Enter email" />						
-					</div>
 					<div className="form-group">
 						<label>Email address</label>
 						<input onChange={this.handleEmailChange} type="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" />						
@@ -72,25 +61,5 @@ class Register extends Component {
   }
 }
 
-export default Register;
-
-$(document).ready(function(){
-	//checkMern();
-});
-
-function checkMern(){
-	$.ajax({
-		method: "POST",
-		url: "http://mern-stack-course.herokuapp.com/api/user",
-		dataType: "json",
-		data: {
-			"email": "hha@gmail.com",
-		    "name": "hha",
-		    "password": "hha"
-		},
-		success:function(data){
-			console.log(data);
-		}
-	});
-}
+export default Login;
 

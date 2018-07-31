@@ -2463,3 +2463,14 @@ If you have ideas for more “How To” recipes that should be on this page, [le
     import Popper from 'popper.js';
 
     https://blog.logrocket.com/how-to-use-bootstrap-with-react-a354715d1121
+
+4. Data insert (Register)
+    - npm install axios --save
+    import axios from 'axios'
+    axios.post('https://mern-stack-course.herokuapp.com/api/user', data).then((response) => {
+			console.log(response);
+		}).catch(function(error){
+			console.log(error);
+		})		
+
+5. Login
