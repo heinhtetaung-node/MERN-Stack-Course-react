@@ -6,6 +6,7 @@ class Home extends Component {
 		setTimeout(function(){
 			axioApi.get('auth/user').then((res) => { 
 				console.log(res.data);
+			  localStorage.setItem('author', res.data.id);         
 			});
 		}, 1500)
 	}

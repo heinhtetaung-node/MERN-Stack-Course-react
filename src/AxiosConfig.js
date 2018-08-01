@@ -10,7 +10,8 @@ const axioApi = axios.create({
         //transformRequest: [(data) => JSON.stringify(data.data)],
         // headers: {
         // 	'Accept': 'application/json',
-        // 	'Content-Type': 'application/json',
+        //         'Content-Type': 'application/json',
+        //         'Access-Control-Allow-Origin':'*',
         // }
 });
 

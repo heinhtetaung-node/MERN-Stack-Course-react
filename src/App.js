@@ -5,8 +5,22 @@ import { Switch, Route, BrowserRouter, Link } from 'react-router-dom'
 import Home from './views/Home.js';
 import Register from './views/Register.js';
 import Login from './views/Login.js';
+import Post from './views/Post.js';
+import AllPost from './views/AllPost.js';
 
 class App extends Component {
+  navMenu(){
+    let navMenu = []
+   // if("token" in localStorage){
+     // navMenu.push(<li key="post" className="nav-item"><Link className="nav-link" to='/post'>Post</Link></li>);
+      navMenu.push(<li key="Allpost" className="nav-item"><Link className="nav-link" to='/allPost'>All Post</Link></li>);
+   // }
+    // }else{
+    //   navMenu.push(<li key="7"><Link to="signin">Sign In</Link></li>);
+      
+    // }
+    return navMenu;
+  }
   render() {
     return (
 			
@@ -20,7 +34,9 @@ class App extends Component {
 								</li>
 								<li className="nav-item">
 									<Link className="nav-link" to='/register'>Register</Link>
-								</li>								
+								</li>	
+                {this.navMenu()}
+
 							</ul>    
 						</div>
 					</nav>
@@ -31,6 +47,8 @@ class App extends Component {
 						<Route exact path='/' component={Home}/>
 						<Route path='/register' component={Register}/>
 						<Route path='/login' component={Login}/>
+            <Route path='/post' component={Post}/>
+            <Route path='/allPost' component={AllPost}/>
 					</Switch>
 				</div>
 

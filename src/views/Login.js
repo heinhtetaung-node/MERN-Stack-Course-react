@@ -31,8 +31,7 @@ class Login extends Component {
 		}
 		
 		axioApi.post(`auth/login`,qs.stringify(user)).then((res) => { 
-            
-            localStorage.setItem('token', res.data.token);            
+			localStorage.setItem('token', res.data.token);    
             axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');            
 			$this.props.history.push('/')    
 

@@ -26,3 +26,14 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+.inputTag {
+   width: 20px !important;
+}
+
+.insertTagButtn {
+   border: none;
+   background-color: red;
+   height: 50px;
+   vertical-align: top; /* no dice */
+   cursor: pointer;
+}
