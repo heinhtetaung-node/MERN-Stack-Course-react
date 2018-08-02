@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import axioApi from './../AxiosConfig';
-import { Redirect } from 'react-router'
+import { Redirect } from 'react-router';
+import { Link } from 'react-router-dom';
 
 
 let $this
@@ -15,10 +16,10 @@ class AllPost extends Component {
     componentDidMount(){
         $this.fetchData();
     }
-    async fetchData(){
+    fetchData(){
     
         // qs is a plugin which change json to query string  // reference from this https://github.com/axios/axios/issues/1195
-		axioApi.get(`posts`).then((res) => { 
+		axioApi.get(`posts?author=`+localStorage.getItem('author')).then((res) => { 
 			
 			// react router redirect to page programatically reference from https://tylermcginnis.com/react-router-programmatically-navigate/
             //$this.props.history.push('/login')
@@ -27,29 +28,34 @@ class AllPost extends Component {
 
 		}).catch((err)=>console.log(err))
       }
-      redirectToPost = () => {
-        $this.setState({ rePost: 'true' });
+    //   redirectToPost = () => {
+    //     $this.setState({ rePost: 'true' });
         
-      }
+    //   }
       tabRow(){
         if($this.state.data instanceof Array){
           return $this.state.data.map(function(object, i){
               console.log(i);
-              return <TableRow obj={object} no={i+1} key={i}/>;
+              return <TableRow obj={object} no={i+1} key={i} editData={$this.editData}/>;
           })
         }
       }
+      editData(id){
+        alert(id);
+        $this.setState({ rePost: 'true' });
+      }
   render() {
-    if($this.state.rePost){
-    return <Redirect to='/post'/>;
-    }
+    // if($this.state.rePost){
+    // return <Redirect to='/post'/>;
+    // }
     return (
       	<div>
 					<br/>
       		        <h2>Listing</h2>					
 					<br/>
                     <div className="col-lg-10"  style={{textAlign : 'right'}}>
-                        <button className="btn btn-primary top" style={{ marginTop:'10px',marginBottom:'20px'}} onClick={$this.redirectToPost}>Add New Post</button>
+                        <Link to={"/post"} class="btn btn-primary center-block" style={{ marginTop:'10px',marginBottom:'20px'}}>Add New Post</Link>
+                        {/* <button className="btn btn-primary top" style={{ marginTop:'10px',marginBottom:'20px'}} onClick={$this.redirectToPost}>Add New Post</button> */}
                     </div>
                     <div className="row">
                     <div className="col-sm-10">
@@ -83,22 +89,18 @@ class TableRow extends Component{
     }
     DeleteSubmit(e){
         e.preventDefault();
-        // const msg = confirm('Are you sure want to delete?');
+        alert(this.props.obj._id);
+        // const msg = $.confirm('Are you sure want to delete?');
         // if(msg == true){
-            // let uri = config.baseurl+'Post/'+this.props.obj.id;
-            // axios.delete(uri).then((response) => {
-            // if(response.data.result==false){
-            //     $this.setState({ formErrors: response.data.errors });
-            //     return false;
-            // }else{
-            //     $this.fetchData();
-            // }
-            // }).catch(function (error) {
-            //     if(error.response.status == 401){
-            //        // signOut.signOut($this);
-            //     }
-            // });
-       // }
+
+            axioApi.delete(`postDelete/`+this.props.obj._id).then((res) => { 
+			
+                // react router redirect to page programatically reference from https://tylermcginnis.com/react-router-programmatically-navigate/
+                $this.fetchData();	
+                    
+    
+            }).catch((err)=>console.log(err))
+       //}
     }
   render(){
       let btndelete;
@@ -120,7 +122,10 @@ class TableRow extends Component{
                   {this.props.obj.tags}
               </td> */}
               <td>
-                  <button onClick={() => this.props.editData(this.props.obj)} className="btn btn-primary">Edit</button>
+                  {/* <Link to={"/editPost/"+this.props.obj._id}>React Router</Link>
+              
+                  <button onClick={() => this.props.editData(this.props.obj._id)} className="btn btn-primary">Edit</button> */}
+                  <Link to={"/editPost/"+this.props.obj._id} class="btn btn-primary center-block">Edit</Link>
               </td>
               <td>
                 <form onSubmit={this.DeleteSubmit}>

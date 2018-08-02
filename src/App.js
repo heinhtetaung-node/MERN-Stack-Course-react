@@ -7,6 +7,7 @@ import Register from './views/Register.js';
 import Login from './views/Login.js';
 import Post from './views/Post.js';
 import AllPost from './views/AllPost.js';
+import EditPost from './views/EditPost.js';
 
 class App extends Component {
   navMenu(){
@@ -47,7 +48,8 @@ class App extends Component {
 						<Route exact path='/' component={Home}/>
 						<Route path='/register' component={Register}/>
 						<Route path='/login' component={Login}/>
-            <Route path='/post' component={Post}/>
+						<Route path='/post' component={Post}/>
+						<Route path="/editPost/:id" component={EditPost} />
             <Route path='/allPost' component={AllPost}/>
 					</Switch>
 				</div>
