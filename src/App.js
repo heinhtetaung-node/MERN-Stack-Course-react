@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Switch, Route, BrowserRouter, Link } from 'react-router-dom'
 import Home from './views/Home.js';
@@ -8,6 +7,7 @@ import Login from './views/Login.js';
 import Post from './views/Post.js';
 import AllPost from './views/AllPost.js';
 import EditPost from './views/EditPost.js';
+import DetailPost from './views/DetailPost.js';
 
 class App extends Component {
   navMenu(){
@@ -50,6 +50,7 @@ class App extends Component {
 						<Route path='/login' component={Login}/>
 						<Route path='/post' component={Post}/>
 						<Route path="/editPost/:id" component={EditPost} />
+						<Route path="/detailPost/:id" component={DetailPost} />
             <Route path='/allPost' component={AllPost}/>
 					</Switch>
 				</div>

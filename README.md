@@ -2474,3 +2474,14 @@ If you have ideas for more “How To” recipes that should be on this page, [le
 		})		
 
 5. Login
+
+
+# Post Detail and Add Comment
+- Create DeatilPost.js
+- Add route in App.js
+  import DetailPost from './views/DetailPost.js';
+  <Route path="/detailPost/:id" component={DetailPost} />
+
+- declare link in AllPost.js
+  <Link to={"/addComment/"+this.props.obj._id}> {this.props.obj.title}</Link>
+
