@@ -1,0 +1,67 @@
+<div>
+    <div className="row">
+        <div className="col-md-3">
+            <br/>
+            <input type="text" className="form-control" placeholder="Search..." />	
+            <br/>		
+        </div>
+        <div className="col-md-3">
+            <br/>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose Technology</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+            <br/>		
+        </div>
+        <div className="col-md-3">
+            <br/>
+            <select class="custom-select" id="inputGroupSelect01">
+                <option selected>Choose Author</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+            </select>
+            <br/>		
+        </div>
+    </div>
+    <div className="row">						
+        <div className="col-md-12">
+            <br/>
+            <div className="row">
+                <div className="col-md-12">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p className="text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper velit quam, vitae tincidunt risus semper ac. Morbi semper pulvinar nulla vitae volutpat. Aenean dapibus dapibus mi, at scelerisque risus mattis vel. In venenatis gravida urna sit amet consequat. Vestibulum sed dui libero. Praesent eros dolor, scelerisque ac augue et, sodales eleifend arcu. Integer laoreet nunc id ante vulputate vehicula. Morbi hendrerit efficitur condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel augue eu nulla iaculis euismod. Donec eu dolor vitae magna iaculis accumsan. Sed ut sodales nibh. Nam nibh neque, mattis id porta et, ullamcorper sit amet massa. Cras aliquam semper cursus. Nulla ornare quis massa non iaculis....									
+                    </p>
+                    <a href="#">Read More &raquo; </a>
+                    <br/><br/><br/>
+                </div>
+            </div>							
+
+            <div className="row">
+                <div className="col-md-12">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p className="text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper velit quam, vitae tincidunt risus semper ac. Morbi semper pulvinar nulla vitae volutpat. Aenean dapibus dapibus mi, at scelerisque risus mattis vel. In venenatis gravida urna sit amet consequat. Vestibulum sed dui libero. Praesent eros dolor, scelerisque ac augue et, sodales eleifend arcu. Integer laoreet nunc id ante vulputate vehicula. Morbi hendrerit efficitur condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel augue eu nulla iaculis euismod. Donec eu dolor vitae magna iaculis accumsan. Sed ut sodales nibh. Nam nibh neque, mattis id porta et, ullamcorper sit amet massa. Cras aliquam semper cursus. Nulla ornare quis massa non iaculis....									
+                    </p>
+                    <a href="#">Read More &raquo; </a>
+                    <br/><br/><br/>
+                </div>
+            </div>							
+
+            <div className="row">
+                <div className="col-md-12">
+                    <h4>Lorem ipsum dolor sit amet</h4>
+                    <p className="text-justify">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas semper velit quam, vitae tincidunt risus semper ac. Morbi semper pulvinar nulla vitae volutpat. Aenean dapibus dapibus mi, at scelerisque risus mattis vel. In venenatis gravida urna sit amet consequat. Vestibulum sed dui libero. Praesent eros dolor, scelerisque ac augue et, sodales eleifend arcu. Integer laoreet nunc id ante vulputate vehicula. Morbi hendrerit efficitur condimentum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vel augue eu nulla iaculis euismod. Donec eu dolor vitae magna iaculis accumsan. Sed ut sodales nibh. Nam nibh neque, mattis id porta et, ullamcorper sit amet massa. Cras aliquam semper cursus. Nulla ornare quis massa non iaculis....									
+                    </p>
+                    <a href="#">Read More &raquo; </a>
+                    <br/><br/><br/>
+                </div>
+            </div>							
+
+        </div>
+    </div>
+</div>

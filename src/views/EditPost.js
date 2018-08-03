@@ -37,17 +37,9 @@ class Post extends Component {
 			// react router redirect to page programatically reference from https://tylermcginnis.com/react-router-programmatically-navigate/
             //$this.props.history.push('/login')
 		   // $this.setState({ data: res.data });
-		   var tags = [];
-		   if(res.data instanceof Array){
-			res.data.map(function(object, i){
-				//selecttag.push(object.value);
-				var tag = {value:object.title, label:object.title};
-				//console.log(tag);
-				tags.push(tag);
-				
-			})
-			 }
-			 $this.setState({ tags: tags });
+		   	var tags = res.data;
+		   
+			$this.setState({ tags: tags });
 			//console.log(res.data);	
 
 		}).catch((err)=>console.log(err))
@@ -61,8 +53,7 @@ class Post extends Component {
 		   if(post.tags instanceof Array){
 			post.tags.map(function(object, i){
 				//selecttag.push(object.value);
-				var tag = {value:object.title, label:object.title};
-				//console.log(tag);
+				var tag = {value:object._id, label:object.title};				
 				tags.push(tag);
 				
 			})
@@ -70,7 +61,7 @@ class Post extends Component {
 			$this.setState({
 				selectedOption : tags
 			  })
-			console.log(res.data);	
+			console.log(tags);	
 
 		}).catch((err)=>console.log(err))
       }
@@ -88,7 +79,7 @@ class Post extends Component {
 	 console.log($this.state.selectedOption);
 	 if($this.state.selectedOption instanceof Array){
 		$this.state.selectedOption.map(function(object, i){
-			selecttag.push(object.value);
+			selecttag.push(object.label);
 		})
 	 }
 		const post = {
