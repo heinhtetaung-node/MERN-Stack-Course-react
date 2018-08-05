@@ -39,8 +39,13 @@ class Login extends Component {
                 // set axios header
                 axioApi.defaults.headers.common['x-access-token'] = res.data.token;
                     
-                $this.props.history.push('/'); // code for redirect home
-
+                //$this.props.history.push('/'); // code for redirect home
+                $this.props.history.push({
+                    pathname: '/',
+                    //search: '?query=abc',
+                    redirectfrom: 'login'
+                })
+                  
             }
 			
 		}).catch((err) => {

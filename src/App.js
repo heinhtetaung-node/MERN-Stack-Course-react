@@ -6,8 +6,33 @@ import { Switch, Route, BrowserRouter, Link } from 'react-router-dom'
 import Home from './views/Home.js'; // this is our newly created component. we have two page, home and register
 import Register from './views/Register.js';
 import Login from './views/Login.js';
+import Post from './views/Post.js';
+import CreatePost from './views/CreatePost.js';
+
+let token = localStorage.getItem('token');            
 
 class App extends Component {
+  ShowLogin(){
+    let loginorlogout = <Link className="nav-link" to='/login'>Login</Link>;
+    if(token){
+      loginorlogout = <a className="nav-link" href="" onClick={this.logout}>Logout</a>;
+    }
+    return loginorlogout;
+  }
+
+  logout(){
+    localStorage.removeItem('token');
+    this.history.push('/');
+  }
+
+  showRegisterOrPost(){
+    let registerOrPost = <Link className="nav-link" to='/register'>Register</Link>;
+    if(token){
+      registerOrPost = <Link className="nav-link" to='/post'>Post</Link>;
+    }
+    return registerOrPost;
+  }
+
   render() {
     return (
       
@@ -22,7 +47,10 @@ class App extends Component {
 									<Link className="nav-link" to='/'>Home</Link> 
 								</li>
 								<li className="nav-item">
-									<Link className="nav-link" to='/register'>Register</Link>
+									{this.showRegisterOrPost()}
+								</li>								
+                <li className="nav-item">
+                  {this.ShowLogin()}									
 								</li>								
 							</ul>    
 						</div>
@@ -36,6 +64,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />  {/* this route reference to domain/  */}
             <Route path="/register" component={Register} /> {/* this route reference to domain/register  */}
             <Route path="/login" component={Login} />
+            <Route path="/post" component={Post} />
+            <Route path="/create-post" component={CreatePost} />
           </Switch>
         </div>
 

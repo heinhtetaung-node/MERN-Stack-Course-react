@@ -2536,3 +2536,18 @@ componentDidMount(){
 }
 
 ##################################################################################
+
+
+MERN Stack Series 10 - ReactJs# Login, Logout Link Update
+
+----- this.history.push with parameter in react -----
+https://stackoverflow.com/questions/44121069/how-to-pass-params-with-history-push-in-react-router-v4
+
+##################################################################################
+
+MERN Stack Series 11 - ReactJs# Post Crud
+
+---- React Select Plugin for multiselect -----
+npm install react-select
+https://github.com/JedWatson/react-select
+https://react-select.com/home
