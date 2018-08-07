@@ -2557,6 +2557,8 @@ https://react-select.com/home
 
 Upgrade to redux
 
+I hope you all should start if you can figure out enough, because redux logic is at the beginning it seems to be conflict and if you write codes without well understand, you may not understand how it works and how it powerful. I dont want to be like this.
+
 Simple React Logic
 Click event -> go to react function, get data and change state, After change state view also change
 
@@ -2676,4 +2678,5 @@ References
 https://www.youtube.com/watch?v=DiLVAXlVYR0&list=PL6gx4Cwl9DGBbSLZjvleMwldX8jGgXV6a
 https://www.youtube.com/watch?v=1w-oQ-i1XB8&list=PLoYCgNOIyGADILc3iUJzygCqC8Tt3bRXt
 https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f47
+
 ##################################################################################
