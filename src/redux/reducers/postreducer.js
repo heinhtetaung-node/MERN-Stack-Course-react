@@ -1,6 +1,7 @@
 const initialState = {
     posts: [],
-    post: {}
+    post: {},
+    tags: []
 }
 export default (state=initialState, action) => {
     switch (action.type) {
@@ -13,6 +14,11 @@ export default (state=initialState, action) => {
           return {
               ...state,
               post: action.post
+          }
+        case 'GET_TAGS':
+          return {
+              ...state,
+              tags: action.payload
           }
         default:
           return state

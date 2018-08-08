@@ -2680,3 +2680,12 @@ https://www.youtube.com/watch?v=1w-oQ-i1XB8&list=PLoYCgNOIyGADILc3iUJzygCqC8Tt3b
 https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f47
 
 ##################################################################################
+
+
+
+Upgrade to redux to Post Form
+
+Getting form data in another way in react js instead of using state
+https://codeburst.io/redux-a-crud-example-abb834d763c9
+
+##################################################################################
