@@ -2551,3 +2551,75 @@ MERN Stack Series 11 - ReactJs# Post Crud
 npm install react-select
 https://github.com/JedWatson/react-select
 https://react-select.com/home
+
+
+##################################################################################
+
+ReactJs Advanced Techs like Extends and HOC by Using Middlewares example
+HOC = Hight Order Component (is a kind of combining multiple components into one) something like mixins in Vue
+
+import React, { Component } from 'react';
+
+const AuthMiddlewareHOC = (PassedComponent) => {
+    return class AuthMiddleware extends Component {
+        componentDidMount() {
+            console.log("abc");
+            alert("p1");
+        }
+        render() {
+            return (
+              <PassedComponent {...this.props} />
+            )
+        }
+    }
+}
+
+const RoleMiddlewareHOC = (PassedComponent) => {
+    return class RoleMiddleware extends Component {
+        componentDidMount() {
+            console.log("abc2");
+            alert("p2");
+        }
+        render() {
+            return (
+                <PassedComponent {...this.props} />
+            )
+        }
+    }    
+}
+
+class HocTest extends Component {
+    constructor(props){
+		super(props);
+    }
+    
+	componentDidMount(){
+        alert("HocTest")
+    }
+    render(){
+        return(
+            <div>HocTest</div>
+        )
+    }
+}
+export default (RoleMiddlewareHOC(AuthMiddlewareHOC(HocTest)));
+
+0. Create 2 HOC data combine in one post and test
+1. Separate HOC authMiddleware class
+2. Wrap to all pages which need auth
+
+
+Can also do this way 
+
+import AuthMiddlewareHOC from './AuthMiddlewareHOC';
+
+<Route path="/post" component={AuthMiddlewareHOC(Post)} />
+
+
+HOC Reference
+https://medium.com/front-end-hacking/higher-order-component-hoc-design-pattern-in-react-9a6ba4eec59d
+https://www.prisma.io/forum/t/react-hoc-to-check-for-authorized-user-protected-routes/478/2
+https://medium.com/@franleplant/react-higher-order-components-in-depth-cf9032ee6c3e
+https://reactjs.org/docs/higher-order-components.html
+https://stackoverflow.com/questions/35103386/react-es6-alternative-for-mixins
+https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750
