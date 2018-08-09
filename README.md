@@ -2551,3 +2551,36 @@ MERN Stack Series 11 - ReactJs# Post Crud
 npm install react-select
 https://github.com/JedWatson/react-select
 https://react-select.com/home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Videos Coming Soon
+React
+1. Post create, edit, delete in user 
+2. Post show in homepage  (including filter, pagination)
+3. Post detail and comment in detail page
+4. Middleware and HOC
+5. Upload React To Heroku
+6. Overall Explanation
+
+Redux
+1. Upload to Redux
+
+Real Time
+1. Upload to digital ocean
+2. Real time add in comment
+3. Real time upload to digital ocean
+
+NodeJs Aws
+NodeJs Docker
