@@ -2575,7 +2575,7 @@ React
 6. Overall Explanation
 
 Redux
-1. Upload to Redux
+1. Upgrade to Redux
 
 Real Time
 1. Upload to digital ocean
