@@ -2577,7 +2577,9 @@ React
 Redux
 1. Upgrade to Redux
 
-Real Time
+
+------------- Not prepare ------------
+Real Time 
 1. Upload to digital ocean
 2. Real time add in comment
 3. Real time upload to digital ocean
