@@ -8,6 +8,7 @@ import Register from './views/Register.js';
 import Login from './views/Login.js';
 import Post from './views/Post.js';
 import CreatePost from './views/CreatePost.js';
+import editPost from './views/editPost.js';
 
 let token = localStorage.getItem('token');            
 
@@ -28,7 +29,7 @@ class App extends Component {
   showRegisterOrPost(){
     let registerOrPost = <Link className="nav-link" to='/register'>Register</Link>;
     if(token){
-      registerOrPost = <Link className="nav-link" to='/post'>Post</Link>;
+      registerOrPost = <Link className="nav-link" to='/post'>User Posts</Link>;
     }
     return registerOrPost;
   }
@@ -66,6 +67,7 @@ class App extends Component {
             <Route path="/login" component={Login} />
             <Route path="/post" component={Post} />
             <Route path="/create-post" component={CreatePost} />
+            <Route path="/editPost/:id" component={editPost} />            
           </Switch>
         </div>
 

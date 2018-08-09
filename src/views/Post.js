@@ -6,33 +6,66 @@ let $this;
 class Post extends Component {
     constructor(props){
 		super(props);
-        this.state = {'posts' : []}
+        this.state = {'posts' : [], author : ''}
 		$this = this; 
     }
     
 	componentDidMount(){
-        axioApi.get('posts').then((res) => {
-            $this.setState({ 'posts' : res.data });
-        });
-
-        
-		setTimeout(function(){
+        setTimeout(function(){
 			axioApi.get('auth/user').then((res) => { 
-				console.log(res.data);
+                console.log(res.data);
+                $this.setState({
+                    'author' : res.data.id
+                })
+
+                $this.getDats();
 			}).catch((err) => {
                 $this.props.history.push('/login'); 
             });
 		}, 1500)
-	}
-
-
+    }
+    
+    getDats(){
+        axioApi.get('posts?author='+$this.state.author).then((res) => {
+            $this.setState({ 'posts' : res.data });
+        });
+    }    
+    deletePost(id){
+        axioApi.post('removepost', {_id : id}).then((res) => {
+            $this.getDats()
+        });
+    }
+    tabRows(){
+        return $this.state.posts.map(function(post, i){
+            return <tr key={i}>
+                    <td>{post.title}</td>
+                    <td>{post.description}</td>
+                    <td>{(post.author)? post.author.name : ''}</td> 
+                    <td>
+                        <Link to={"/editPost/"+post._id}><button>Edit</button></Link>                    
+                        <button onClick={() => $this.deletePost(post._id)}>Delete</button></td>                   
+                    </tr>;
+        });
+    }
   render() {
     return (
       	<div>
       		<hr/>
             <h1>Post</h1>
-            <Link className="nav-link" to='/create-post'><button class="btn btn-default">Create Post</button></Link> 
-
+            <Link className="nav-link" to='/create-post'><button className="btn btn-default">Create Post</button></Link> 
+            <table className="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Author Name</th>
+                        <th>Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.tabRows()}
+                </tbody>
+            </table>
             <hr/>
       	</div>
     );

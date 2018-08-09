@@ -4,19 +4,35 @@ import qs from 'qs';
 import CreatableSelect from 'react-select/lib/Creatable';
 
 let $this;
-class CreatePost extends Component {
+class EditPost extends Component {
     constructor(props){
 		super(props);
-        this.state = {title : '', description : '', tags : [], alltags : [], author : ''}
+        this.state = {_id: '', title : '', description : '', tags : [], alltags : [], author : ''}
 		$this = this; 
     }
     
 	componentDidMount(){
+        $this.setState({
+            _id : $this.props.match.params.id
+        })
+        axioApi.get('post/'+$this.props.match.params.id).then((res) => {
+            const tags = res.data.tags.map(function(obj, i){
+                return {value : obj._id, label: obj.title};
+            });
+            console.log(tags);
+            $this.setState({
+                title : res.data.title,
+                description : res.data.description,
+                tags: tags,
+            })
+        });
+
         axioApi.get('tags').then((res) => {
             $this.setState({
                 alltags : res.data
             })
         });
+
         setTimeout(function(){
 			axioApi.get('auth/user').then((res) => { 
                 console.log(res.data);
@@ -43,6 +59,7 @@ class CreatePost extends Component {
 
     savePost(){
         const postdata = {
+            _id : $this.state._id,
             title : $this.state.title,
             description : $this.state.description,
             tags : $this.state.tags,
@@ -63,16 +80,16 @@ class CreatePost extends Component {
     return (
       	<div>
       		<hr/>
-            <h1>Post Create</h1>
+            <h1>Post Edit</h1>
             
                 <br/>
                 <div className="form-group">
                     <label>Title</label>
-                    <input onChange={this.changeTitle} name="title" type="text" className="form-control" id="title" aria-describedby="title" placeholder="Enter Title" />						
+                    <input value={$this.state.title} onChange={this.changeTitle} name="title" type="text" className="form-control" id="title" aria-describedby="title" placeholder="Enter Title" />						
                 </div>
                 <div className="form-group">
                     <label>Description</label>
-                    <input onChange={this.changeDescription}  name="description" type="email" className="form-control" id="description" aria-describedby="description" placeholder="Enter Description" />						
+                    <input value={$this.state.description} onChange={this.changeDescription}  name="description" type="email" className="form-control" id="description" aria-describedby="description" placeholder="Enter Description" />						
                 </div>
                 <div className="form-group">
                     <label>Tags</label>
@@ -93,6 +110,7 @@ class CreatePost extends Component {
                         //onInputChange={this.handleInputChange}
                         options={this.state.alltags}
                         isMulti = {true}
+                        value={this.state.tags}
                     />
                 
                 </div>
@@ -105,4 +123,4 @@ class CreatePost extends Component {
     );
   }
 }
-export default CreatePost;
+export default EditPost;
