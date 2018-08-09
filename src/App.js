@@ -8,6 +8,8 @@ import Register from './views/Register.js';
 import Login from './views/Login.js';
 import Post from './views/Post.js';
 import CreatePost from './views/CreatePost.js';
+import HocTest from './views/HocTest.js';
+import AuthMiddlewareHOC from './AuthMiddlewareHOC';
 
 let token = localStorage.getItem('token');            
 
@@ -64,8 +66,10 @@ class App extends Component {
             <Route exact path="/" component={Home} />  {/* this route reference to domain/  */}
             <Route path="/register" component={Register} /> {/* this route reference to domain/register  */}
             <Route path="/login" component={Login} />
-            <Route path="/post" component={Post} />
+            <Route path="/post" component={AuthMiddlewareHOC(Post)} />
             <Route path="/create-post" component={CreatePost} />
+            <Route path="/hoctest" component={HocTest} />
+            
           </Switch>
         </div>
 

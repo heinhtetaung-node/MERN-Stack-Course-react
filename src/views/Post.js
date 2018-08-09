@@ -9,20 +9,20 @@ class Post extends Component {
         this.state = {'posts' : []}
 		$this = this; 
     }
-    
+    redirectIfNotLogin = true;
 	componentDidMount(){
         axioApi.get('posts').then((res) => {
             $this.setState({ 'posts' : res.data });
         });
 
         
-		setTimeout(function(){
-			axioApi.get('auth/user').then((res) => { 
-				console.log(res.data);
-			}).catch((err) => {
-                $this.props.history.push('/login'); 
-            });
-		}, 1500)
+		// setTimeout(function(){
+		// 	axioApi.get('auth/user').then((res) => { 
+		// 		console.log(res.data);
+		// 	}).catch((err) => {
+        //         $this.props.history.push('/login'); 
+        //     });
+		// }, 1500)
 	}
 
 
@@ -30,7 +30,7 @@ class Post extends Component {
     return (
       	<div>
       		<hr/>
-            <h1>Post</h1>
+            <h1>Post {this.props.loginuser}</h1>
             <Link className="nav-link" to='/create-post'><button class="btn btn-default">Create Post</button></Link> 
 
             <hr/>
