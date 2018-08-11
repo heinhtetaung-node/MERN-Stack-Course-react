@@ -9,6 +9,7 @@ import Login from './views/Login.js';
 import Post from './views/Post.js';
 import CreatePost from './views/CreatePost.js';
 import editPost from './views/editPost.js';
+import PostDetail from './views/PostDetail.js';
 
 let token = localStorage.getItem('token');            
 
@@ -68,6 +69,7 @@ class App extends Component {
             <Route path="/post" component={Post} />
             <Route path="/create-post" component={CreatePost} />
             <Route path="/editPost/:id" component={editPost} />            
+            <Route path="/post-detail/:id" component={PostDetail} />            
           </Switch>
         </div>
 

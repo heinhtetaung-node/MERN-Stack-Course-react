@@ -3,6 +3,7 @@ import axioApi from './../axioConfig';
 import qs from 'qs';
 
 import Select from 'react-select';
+import { Link } from 'react-router-dom'
 
 let $this;
 class Home extends Component {
@@ -13,7 +14,7 @@ class Home extends Component {
 			window.location.reload();
 		}
 		$this = this;
-		this.state = {posts:[], keyword:'', tags:[], alltags:[]}
+		this.state = {posts:[], keyword:'', tags:[], alltags:[], page:1, limit:5}
 	}
 	componentDidMount(){		
 		setTimeout(function(){
@@ -23,6 +24,28 @@ class Home extends Component {
 		}, 1500)
 		this.getPosts()
 		this.getTags()
+		document.addEventListener('scroll', this.trackScrolling);
+		//document.getElementById('Loading').style.display = "none";
+	}
+	componentWillUnmount(){
+		document.removeEventListener('scroll', this.trackScrolling);
+	}
+	trackScrolling(){
+		const wrappedElement = document.getElementById('root');		
+		if($this.isBottom(wrappedElement)){
+			const nextpage = $this.state.page+1;
+			$this.setState({
+				page : nextpage
+			});
+			document.removeEventListener('scroll', $this.trackScrolling);
+			document.getElementById('Loading').style.display = "block";
+			setTimeout(function(){
+				$this.getPosts();
+			}, 500)
+		}
+	}
+	isBottom(el){
+		return el.getBoundingClientRect().bottom <= window.innerHeight;
 	}
 	getTags(){
 		axioApi.get('tags').then((res) => {
@@ -43,12 +66,19 @@ class Home extends Component {
 		});		
 		const filter = {
 			keyword : $this.state.keyword,
-			tags : selectTagsIds.toString()
+			tags : selectTagsIds.toString(),
+			page : $this.state.page,
+			limit : $this.state.limit
 		};						
 		axioApi.get('posts?'+qs.stringify(filter)).then((res) => { 
+			const postdatas = $this.state.posts.concat(res.data);
 			$this.setState({
-				posts : res.data
+				posts : postdatas
 			})
+			document.getElementById('Loading').style.display = "none";
+			setTimeout(function(){
+				document.addEventListener('scroll', $this.trackScrolling);
+			},1000)
 		});
 	}
 	tabRows(){
@@ -69,8 +99,8 @@ class Home extends Component {
 	}
   render() {
     return (
-      	<div>
-					<div className="row">
+      	<div id="HomeView">
+					<div className="row" >
 							<div className="col-md-3">
 									<br/>
 									<input type="text" onBlur={this.changeKeyword} className="form-control" placeholder="Search..." />	
@@ -102,7 +132,8 @@ class Home extends Component {
 					<div className="row">						
 							<div className="col-md-12">
 									<br/>
-									{this.tabRows()}					
+									{this.tabRows()}
+									<div id="Loading">Loading...</div>					
 							</div>
 					</div>
 			</div>
@@ -117,9 +148,8 @@ class PostList extends Component{
 		super(props)
 	}
 	showTags(){
-		return this.props.post.tags.map(function(t){
-			console.log(t);
-			return <span className="badge badge-info">{t.title}</span>
+		return this.props.post.tags.map(function(t, i){
+			return <span key={i} className="badge badge-info">{t.title}</span>
 		})
 	}
 	render(){
@@ -132,7 +162,7 @@ class PostList extends Component{
 							<p className="text-justify">
 							{this.props.post.description}
 							</p>
-							<a href="#">Read More &raquo; </a>
+							<Link to={"post-detail/"+this.props.post._id} >Read More &raquo; </Link>
 							<br/><br/><br/>
 					</div>
 			</div>							
