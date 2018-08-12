@@ -2567,6 +2567,12 @@ MERN Stack Series 15 - ReactJs# NodeJs# Pagination Using Infinate Scroll
 
 MERN Stack Series 16 - ReactJs# NodeJs# Post Detail and Adding Comment
 
+MERN Stack Series 17 - ReactJs# Common Techniques HOC(High Order Component) and Middleware
+
+
+MERN Stack Series 18 - Upload React to Heroku
+
+
 
 
 
@@ -2614,4 +2620,3 @@ Real Time
 3. Real time upload to digital ocean
 
 NodeJs Aws
-NodeJs Docker

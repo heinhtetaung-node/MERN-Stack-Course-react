@@ -31,18 +31,7 @@ class EditPost extends Component {
             $this.setState({
                 alltags : res.data
             })
-        });
-
-        setTimeout(function(){
-			axioApi.get('auth/user').then((res) => { 
-                console.log(res.data);
-                $this.setState({
-                    author : res.data.id
-                });
-			}).catch((err) => {
-                $this.props.history.push('/login'); 
-            });
-		}, 1500)
+        });        
 	}
 
     changeTitle(e){
@@ -63,7 +52,7 @@ class EditPost extends Component {
             title : $this.state.title,
             description : $this.state.description,
             tags : $this.state.tags,
-            author : $this.state.author,
+            author : $this.props.loginuser,
         }
 
         postdata.tags = postdata.tags.map(function(t){

@@ -11,22 +11,13 @@ class Post extends Component {
     }
     
 	componentDidMount(){
-        setTimeout(function(){
-			axioApi.get('auth/user').then((res) => { 
-                console.log(res.data);
-                $this.setState({
-                    'author' : res.data.id
-                })
-
-                $this.getDats();
-			}).catch((err) => {
-                $this.props.history.push('/login'); 
-            });
-		}, 1500)
+        
+    }    
+    authSuccess(){
+        $this.getDats();
     }
-    
     getDats(){
-        axioApi.get('posts?author='+$this.state.author).then((res) => {
+        axioApi.get('posts?author='+$this.props.loginuser).then((res) => {
             $this.setState({ 'posts' : res.data });
         });
     }    
