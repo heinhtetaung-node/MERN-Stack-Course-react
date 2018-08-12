@@ -1,7 +1,7 @@
 import axios from 'axios';
 const axioApi = axios.create({  
-        baseURL: 'http://localhost:5000/api/',
-        //baseURL: 'http://mern-stack-course.herokuapp.com/api/',  // let our base uri is server uri
+        //baseURL: 'http://localhost:5000/api/',
+        baseURL: 'http://mern-stack-course.herokuapp.com/api/',  // let our base uri is server uri
         //baseURL: 'https://jsonplaceholder.typicode.com/',
         timeout: 10000,
         withCredentials: true,
