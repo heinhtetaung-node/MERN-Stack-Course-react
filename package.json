@@ -2,6 +2,10 @@
   "name": "mern-stack-course-react",
   "version": "0.1.0",
   "private": true,
+  "engines":{
+    "npm":"6.2.0",
+    "node":"10.8.0"
+  },
   "dependencies": {
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
