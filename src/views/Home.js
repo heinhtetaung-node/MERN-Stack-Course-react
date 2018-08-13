@@ -17,11 +17,6 @@ class Home extends Component {
 		this.state = {posts:[], keyword:'', tags:[], alltags:[], page:1, limit:5}
 	}
 	componentDidMount(){		
-		setTimeout(function(){
-			axioApi.get('auth/user').then((res) => { 
-				console.log(res.data);
-			});
-		}, 1500)
 		this.getPosts()
 		this.getTags()
 		document.addEventListener('scroll', this.trackScrolling);
@@ -55,7 +50,7 @@ class Home extends Component {
 		});
 	}
 	tagsSelectChange = (selectedtag) => {
-			$this.setState({ tags : selectedtag });
+			$this.setState({ tags : selectedtag, posts:[], page:1 });
 			setTimeout(function(){			
 			$this.getPosts();
 			},500);
@@ -91,7 +86,7 @@ class Home extends Component {
 
 	changeKeyword(e){		
 		$this.setState({
-			keyword : e.target.value
+			keyword : e.target.value, posts:[], page:1
 		})
 		setTimeout(function(){			
 			$this.getPosts()

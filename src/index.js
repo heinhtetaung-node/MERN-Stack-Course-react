@@ -12,6 +12,11 @@ import axioApi from './axioConfig';
 let token = localStorage.getItem('token');            
 if(token){
 	axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');           
+	axioApi.get('auth/user').then((res) => { 
+        localStorage.setItem('user_id', res.data.id);
+	}).catch((err) => {
+        localStorage.removeItem('token');        
+    });   
 }
 
 ReactDOM.render(<BrowserRouter>
