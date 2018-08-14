@@ -7,7 +7,7 @@ export default (state=initialState, action) => {
         case 'VIEW_POSTS' :
           return {
               ...state,
-              posts: action.posts
+              posts: action.posts  // redux_step3 saving into store one big javascript object
           }
         case 'VIEW_POST':
           return {

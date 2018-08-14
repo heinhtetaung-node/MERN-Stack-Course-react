@@ -1,33 +1,36 @@
 import React, { Component } from 'react';
 import axioApi from './../axioConfig';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { getPosts, deletePost } from './../redux/actions';
+
+const mapStateToProps = state => {
+    return{
+        posts : state.postreducer.posts  // redux_step4 getting data from store and connect with view
+    }
+}
 
 let $this;
 class Post extends Component {
     constructor(props){
 		super(props);
-        this.state = {'posts' : [], author : ''}
-		$this = this; 
+        $this = this; 
     }
     
 	componentDidMount(){
-        
+        this.props.getPosts($this.props.loginuser);  // redux_step1 calling to actions
     }    
-    authSuccess(){
-        $this.getDats();
-    }
-    getDats(){
-        axioApi.get('posts?author='+$this.props.loginuser).then((res) => {
-            $this.setState({ 'posts' : res.data });
-        });
-    }    
-    deletePost(id){
-        axioApi.post('removepost', {_id : id}).then((res) => {
-            $this.getDats()
-        });
+    async deletePost(id){
+        const returndata = await $this.props.deletePost(id);
+        if(returndata.data.message == "deleted"){
+            $this.props.getPosts($this.props.loginuser);
+        }else{
+            alert("something error"); console.log(returndata);
+        }
     }
     tabRows(){
-        return $this.state.posts.map(function(post, i){
+        return $this.props.posts.map(function(post, i){
             return <tr key={i}>
                     <td>{post.title}</td>
                     <td>{post.description}</td>
@@ -62,4 +65,6 @@ class Post extends Component {
     );
   }
 }
-export default Post;
+//export default Post;
+export default connect(mapStateToProps, { getPosts, deletePost })(Post);
+

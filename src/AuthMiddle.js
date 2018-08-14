@@ -18,13 +18,21 @@ const AuthMiddlewareHOC = (PassedComponent) => {
                     $this.refs.child.authSuccess()          
                 }                
 			}).catch((err) => {
+                $this.setState({
+                    loginuser : 'noauth'
+                })
                 localStorage.removeItem('token');
                 $this.props.history.push('/login'); 
             });          
         }
+        showChild(){
+            if($this.state.loginuser!=''){
+                return <PassedComponent {...this.props} ref="child" loginuser={$this.state.loginuser} />
+            }
+        }
         render(){
             return (
-                <PassedComponent {...this.props} ref="child" loginuser={$this.state.loginuser} />
+                <div>{this.showChild()}</div>
             )
         }
     }

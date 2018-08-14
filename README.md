@@ -2707,7 +2707,7 @@ https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f4
 
 
 
-Upgrade to redux to Post Form
+MERN Stack Series 21 - Post CRUD change with redux
 
 Getting form data in another way in react js instead of using state
 https://codeburst.io/redux-a-crud-example-abb834d763c9
