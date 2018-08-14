@@ -2572,6 +2572,147 @@ MERN Stack Series 17 - ReactJs# Common Techniques HOC(High Order Component) and 
 
 MERN Stack Series 18 - Upload React to Heroku
 
+MERN Stack Series 19 - Fixing Bugs
+
+##################################################################################
+
+
+
+MERN Stack Series 20 - Upgrade to redux
+
+I hope you all should start after only if you can figure out enough, because redux logic is at the beginning it seems to be conflict and if you write codes without well understand, you may not understand how it works and how it powerful. I dont want to be like this.
+
+Simple React Logic
+Click event -> go to react function, get data and change state, After change state view also change
+
+
+----- Redux logics -----
+Redux is something like data handling framework especially for state management, And it follows flux structure. Especially use for performance. React and Redux are a nice couple and you will see amazing performance by combining this two.
+
+In redux there is one big javascript object called 'Store' . It responsible to take handle the whole application data and all datas retrieved from api are saving to store. So, All components can get only specific datas from 'Store' and the datas which is really need for them. That's why performance is amazing. Not duplicate state for each components, all components can use only 'Store' and can only retrieve specific data what they really need.
+
+Click event go to
+-> 'Actions' In actions, get datas. After get datas send to 'Reducer'
+-> 'Reducer' In reducers, check condition and send data to 'Store' 
+-> 'Store' If data is reached to store, the Component can select data from it and apply in view
+-> 'Component'  can use as this.props.store.datas // something like this
+Not really hard. isn't it?
+
+npm install redux --save
+npm install react-redux --save
+npm install react-router-redux --save
+npm install redux-devtools-extension --save
+npm install history --save
+npm install redux-thunk --save
+
+Can be in the one line
+npm install redux react-redux react-router-redux redux-devtools-extension history redux-thunk --save
+npm install react-router-redux@5.0.0-alpha.9
+
+3. In index.js import this three
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import { store, history } from './redux/store';
+
+4. modify to ReactDOM.render like following
+ReactDOM.render(
+  <Provider store={store}>
+      <ConnectedRouter history={history}>
+          <App />                
+      </ConnectedRouter>
+  </Provider>, document.getElementById('root')); 
+
+5. Create Store src/redux/store.js
+import { applyMiddleware, createStore } from 'redux';  // applyMiddleware is middleware for redux action
+//import { createLogger } from 'redux-logger'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly';  // this is used for debugging, something like developer console in chrome Or Laravel debugger 
+import reducer from './reducer';
+import thunk from 'redux-thunk'  // this is the middleware plugin use to allow async function in redux actions
+
+import createHistory from 'history/createBrowserHistory';
+
+export const history = createHistory();
+
+// Build the middleware for intercepting and dispatching navigation actions
+//const myRouterMiddleware = routerMiddleware(history);
+
+export const store = createStore(
+  reducer, composeWithDevTools(applyMiddleware(thunk)));
+
+
+
+6. Create Reducers under src/redux/reducers folder
+Lets create postreducer.js first, I will explain in video how it works
+
+const initialState = {
+    posts: [],
+    post: {}
+}
+export default (state=initialState, action) => {
+    switch (action.type) {
+        case 'VIEW_POSTS' :
+          return {
+              ...state,
+              posts: action.posts
+          }
+        case 'VIEW_POST':
+          return {
+              ...state,
+              post: action.post
+          }
+        default:
+          return state
+    }
+}
+
+In reducers, there is need index.js file that combine all reducers file
+import { combineReducers } from 'redux';
+import postreducer from './postreducer';
+import { routerReducer } from 'react-router-redux';
+
+export default combineReducers({
+  postreducer,
+  router: routerReducer
+});
+
+
+
+7. Create actions src/redux/actions folder
+If your project is big, create multiple actions, like postActions.js Or userActions.js Or ... 
+But if it is small, can be in one file index.js
+
+index.js
+import axioApi from './../../axioConfig';
+export function getPosts () {
+    return (dispatch) => {
+        axioApi.get('posts').then((res) => {
+            let posts = res.data
+            dispatch({type:'VIEW_POSTS', posts})
+        })
+        .catch((err) => {
+            dispatch({type:'VIEW_POSTS_ERR', err})
+        })
+    }
+}
+
+Ok That's all. Now all we need to do is to build together all. I will explain in video.
+
+
+References
+https://www.youtube.com/watch?v=DiLVAXlVYR0&list=PL6gx4Cwl9DGBbSLZjvleMwldX8jGgXV6a
+https://www.youtube.com/watch?v=1w-oQ-i1XB8&list=PLoYCgNOIyGADILc3iUJzygCqC8Tt3bRXt
+https://codeburst.io/build-simple-medium-com-on-node-js-and-react-js-a278c5192f47
+
+##################################################################################
+
+
+
+Upgrade to redux to Post Form
+
+Getting form data in another way in react js instead of using state
+https://codeburst.io/redux-a-crud-example-abb834d763c9
+
+##################################################################################
 
 
 

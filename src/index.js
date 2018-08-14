@@ -9,6 +9,13 @@ import $ from 'jquery';
 import Popper from 'popper.js';
 
 import axioApi from './axioConfig';
+
+/*** Redux ***/
+import { Provider } from 'react-redux';
+import { ConnectedRouter } from 'react-router-redux';
+import { store, history } from './redux/store';
+/*** *********** ***/
+
 let token = localStorage.getItem('token');            
 if(token){
 	axioApi.defaults.headers.common['x-access-token'] = localStorage.getItem('token');           
@@ -19,6 +26,12 @@ if(token){
     });   
 }
 
-ReactDOM.render(<BrowserRouter>
-                    <App />
-                </BrowserRouter>, document.getElementById('root')); 
+
+ReactDOM.render(
+  <Provider store={store}>
+      <ConnectedRouter history={history}>
+          <App />                
+      </ConnectedRouter>
+  </Provider>, document.getElementById('root')); 
+
+registerServiceWorker();
