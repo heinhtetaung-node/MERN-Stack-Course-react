@@ -1,0 +1,40 @@
+React Change to production
+
+1. Create Production build
+yarn run build
+
+2. Create express server
+yarn add express OR npm install express
+Create server.js file under root
+In server.js
+const express = require("express")
+const path = require('path')
+const app = express()  
+
+// if(process.env.NODE_ENV == 'production'){
+	app.use(express.static(path.join(__dirname, 'build')));
+
+	app.get('*', (req,res)=> {
+		res.sendFile(path.join(__dirname, 'build/index.html'));
+	});
+// }
+app.set('port', (process.env.PORT || 80));
+
+app.listen(app.get('port'), function() {
+  	console.log('React app is running on port', app.get('port'));
+});
+
+
+3. change package.json script
+"scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "start-production": "yarn run build && cross-env && forever server.js"
+  }
+
+
+4. run like this
+npm run start-production
+
