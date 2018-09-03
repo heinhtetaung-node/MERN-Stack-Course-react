@@ -9,7 +9,7 @@ const app = express()
 		res.sendFile(path.join(__dirname, 'build/index.html'));
 	});
 // }
-app.set('port', (process.env.PORT || 80));
+app.set('port', (process.env.PORT || 3500));
 
 app.listen(app.get('port'), function() {
   	console.log('React app is running on port', app.get('port'));
